@@ -8,10 +8,9 @@
   background-color: black;
 }
 .main {
-  position: relative;
   background-color: black;
   color: white;
-  height: 150vh;
+  min-height: 200vh;
   width: 40%;
   margin: 0 auto;
 }
@@ -30,6 +29,7 @@
   border-color: rgb(245, 152, 39);
 }
 .body-container {
+  min-height: 200vh;
   padding: 20px;
 }
 .body-container input {

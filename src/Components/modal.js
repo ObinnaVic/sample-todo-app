@@ -29,7 +29,7 @@ function Modal({modal, setModal}) {
       <textarea
         name='description'
         cols='37'
-        rows='10'
+        rows='4'
         placeholder='DESCRIPTION'
         value={task.desc}
         onChange={(e) => setTask({...task, desc: e.target.value })}
