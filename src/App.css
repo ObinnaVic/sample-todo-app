@@ -1,38 +1,169 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.body {
+  background-color: black;
+}
+.main {
+  position: relative;
+  background-color: black;
+  color: white;
+  height: 150vh;
+  width: 40%;
+  margin: 0 auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.body-container img {
+  width: 20%;
+  background-color: white;
+  border-radius: 50%;
+  margin: 10px 0 10px 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.newTasks {
+  height: auto;
+  width: 100%;
+  border: 2px solid;
+  border-color: rgb(245, 152, 39);
+}
+.body-container {
+  padding: 20px;
+}
+.body-container input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 18px;
+  border-color: rgb(245, 152, 39);
+  border-width: 3px;
+}
+
+.search-bar {
+  position: relative;
+  margin: 20px 0 20px 0;
+}
+.search-bar svg {
+  position: absolute;
+  right: 15px;
+  top: 13px;
+  color: black;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  background-color: white;
+  width: 40%;
+  padding: 20px;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  margin: 0 auto;
+}
+
+.addTasksBtn {
+  display: flex;
+  margin: -50px auto 0 auto;
+  background-color: rgb(245, 152, 39);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgb(100, 100, 100);
+}
+
+.addTasksBtn svg {
+  align-self: center;
+  margin-inline: auto;
+  color: white;
+}
+
+.footer-icons {
+  display: flex;
+  justify-content: space-between;
+}
+
+footer svg {
+  color: black;
+}
+
+.modal {
+  position: fixed;
+  background-color: white;
+  width: 35%;
+  height: 60vh;
+  top: 20%;
+  left: 32%;
+  padding: 5px;
+}
+
+.modal input, .modal textarea {
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 100%;
+  border-color: rgb(245, 152, 39);
+  border-width: 3px;
+}
+
+.addBtn {
+  background-color: rgb(245, 152, 39);
+  color: white;
+  padding: 5px 20px;
+  cursor: pointer;
+}
+
+.showModal {
+  display: block;
+}
+
+.hideModal {
+  display: none;
+}
+
+.empty-tasks {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
+.new-task-section {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid;
+  border-radius: 20px;
+  padding: 5px;
+  margin: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.tasks-text {
+  margin: 20px;
+}
+
+.new-task-section svg {
+  display: block;
+  margin: 20px;
+  cursor: pointer;
+}
+
+
+
+@media only screen and (max-width: 700px) {
+  .main {
+    height: 100vh;
+    width: 100%;
   }
-  to {
-    transform: rotate(360deg);
+
+  footer {
+    width: 100%;
   }
+
+  .modal {
+    width: 80%;
+    left: 10%;
+    height: 40%;
+  }
+  
 }
