@@ -4,16 +4,18 @@
   padding: 0;
 }
 
-.body {
-  background-color: black;
+body {
+  background-color: rgb(134, 126, 18);
 }
+
+
 .main {
   /* position: relative; */
-  background-color: black;
-  color: white;
-  min-height: 150vh;
+  /* color: white; */
+  height: auto;
   width: 40%;
   margin: 0 auto;
+  padding: 20px;
 }
 
 .body-container img {
@@ -24,15 +26,15 @@
 }
 
 .newTasks {
-  height: auto;
+  background-color: black;
+  color: white;
+  height: 100%;
   width: 100%;
   border: 2px solid;
   border-color: rgb(245, 152, 39);
+  padding-bottom: 60px;
 }
-.body-container {
-  min-height: 150%;
-  padding: 20px;
-}
+ 
 .body-container input {
   width: 100%;
   padding: 10px;
@@ -153,7 +155,6 @@ footer svg {
 
 @media only screen and (max-width: 700px) {
   .main {
-    height: 100vh;
     width: 100%;
   }
 
