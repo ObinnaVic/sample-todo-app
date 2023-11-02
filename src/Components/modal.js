@@ -1,19 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+const Queue = require("./queue");
+
 
 function Modal({modal, setModal}) {
     const [task, setTask] = useState({title: "", desc: ""});
 
+
     const AddTask = () => {
-      let id = new Date().getSeconds();
-      localStorage.setItem(
-        id,
-        JSON.stringify({
-          Title: task.title,
-          Desc: task.desc,
-          id: id,
-          color: "white"
-        })
-      );
+      Queue.enqueue(task.title, task.desc, "white");
+    
+      // localStorage.setItem(
+      //   id,
+      //   JSON.stringify({
+      //     Title: task.title,
+      //     Desc: task.desc,
+      //     id: id,
+      //     color: "white"
+      //   })
+      // );
       setTask({title: "", desc: ""});
       setModal(false);
     }

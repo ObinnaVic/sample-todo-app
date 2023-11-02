@@ -1,51 +1,68 @@
 import React, { useEffect, useState } from "react";
+const Queue = require("./queue");
+
+// console.log(Queue.getData);
 
 function NewTasks() {
   const [newTasks, setNewTask] = useState([]);
   // const [doneTask, setDoneTask] = useState(false);
-
-  let arr = [];
-  let Data = Object.values(localStorage);
-
-  for (const i of Data) {
-    arr.push(JSON.parse(i));
+  
+  const addTask = () => {
+    const data = Queue.getData;
+    setNewTask(data);
   }
+  
+  // useEffect(() => {
+  //   const data = Queue.getData;
+  //   setNewTask(data);
+  // },[])
 
-  const getData = () => {
-    setNewTask(arr);
-  };
-  useEffect(() => {
-    getData();
-  }, [arr.length]);
+  setInterval(() => {
+    addTask();
+  }, 2000);
+
+  // console.log(newTasks);
+
+  // let arr = [];
+  // let Data = Object.values(localStorage);
+
+  // for (const i of Data) {
+  //   arr.push(JSON.parse(i));
+  // }
+
+  // const getData = () => {
+  //   setNewTask(arr);
+  // };
+  // useEffect(() => {
+  //   getData();
+  // }, [arr.length]);
 
   const deleteTask = (id) => {
-    localStorage.removeItem(JSON.parse(id));
-    let NewTasks = arr.filter((item) => item.id !== id);
-    arr = NewTasks;
-    getData();
+    Queue.dequeue(id);
+    addTask();
   };
 
-  const TaskDone = (id) => {
-    arr = arr.filter((item) => {
-      if (item.id === id && item.color === "white") {
-        item.color = "red";
-      }
-      return {...item, color: item.color};
-    })
-    getData();
-  };
+  // const TaskDone = (id) => {
+  //   arr = arr.filter((item) => {
+  //     if (item.id === id && item.color === "white") {
+  //       item.color = "red";
+  //     }
+  //     return {...item, color: item.color};
+  //   })
+  //   getData();
+  // };
 
-  const RestoreTasks = (id) => {
-    arr = arr.filter((item) => {
-      if (item.id === id && item.color === "red") {
-        item.color = "white";
-      }
-      return { ...item, color: item.color };
-    });
-    getData();
-  }
+  // const RestoreTasks = (id) => {
+  //   arr = arr.filter((item) => {
+  //     if (item.id === id && item.color === "red") {
+  //       item.color = "white";
+  //     }
+  //     return { ...item, color: item.color };
+  //   });
+  //   getData();
+  // }
 
-  if (arr.length === 0) {
+  if (newTasks?.length === 0) {
     return (
       <section>
         <h2>Today's Tasks</h2>
@@ -62,8 +79,8 @@ function NewTasks() {
     <section>
       <h2>Today's Tasks</h2>
       <div className='newTasks'>
-        {newTasks.map((item) => {
-          const { Title, Desc, id, color } = item;
+        {newTasks?.map((item) => {
+          const { title, description, id, color } = item;
           return (
             <div
               className='new-task-section'
@@ -71,8 +88,8 @@ function NewTasks() {
               key={id}
             >
               <div className='tasks-text'>
-                <h3>{Title}</h3>
-                <p>{Desc}</p>
+                <h3>{title}</h3>
+                <p>{description}</p>
               </div>
               <div>
                 <svg
@@ -94,7 +111,7 @@ function NewTasks() {
                     fill='currentColor'
                     className='bi bi-check-square-fill'
                     viewBox='0 0 16 16'
-                    onClick={() => TaskDone(id)}
+                    // onClick={() => TaskDone(id)}
                   >
                     <path d='M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z' />
                   </svg>
@@ -106,10 +123,10 @@ function NewTasks() {
                     fill='currentColor'
                     class='bi bi-arrow-clockwise'
                     viewBox='0 0 16 16'
-                    onClick={() => RestoreTasks(id)}
+                    // onClick={() => RestoreTasks(id)}
                   >
                     <path
-                      fill-rule='evenodd'
+                      fillRule='evenodd'
                       d='M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z'
                     />
                     <path d='M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z' />
