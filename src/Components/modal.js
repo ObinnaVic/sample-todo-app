@@ -8,16 +8,6 @@ function Modal({modal, setModal}) {
 
     const AddTask = () => {
       Queue.enqueue(task.title, task.desc, "white");
-    
-      // localStorage.setItem(
-      //   id,
-      //   JSON.stringify({
-      //     Title: task.title,
-      //     Desc: task.desc,
-      //     id: id,
-      //     color: "white"
-      //   })
-      // );
       setTask({title: "", desc: ""});
       setModal(false);
     }

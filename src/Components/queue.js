@@ -10,9 +10,9 @@ class Node {
 class Queue {
   //This is a queue data structure which follows the rules of FIRST IN, FIRST OUT.
   constructor() {
-    // let data = JSON.parse(localStorage.getItem("Data"));
-    // this.data = data ? data : {};
-    this.data = {};
+    let data = JSON.parse(localStorage.getItem("Data"));
+    this.data = data ? data : {};
+    // this.data = {};
     this.rear = 0;
     this.front = 0;
     this.size = 0;
@@ -29,7 +29,7 @@ class Queue {
 
     this.size++;
 
-    // JSON.stringify(localStorage.setItem("Data", this.data));
+    localStorage.setItem("Data", JSON.stringify(this.data));
   }
 
   dequeue(id) {
@@ -48,6 +48,8 @@ class Queue {
 
       this.size--;
 
+      localStorage.setItem("Data", JSON.stringify(this.data));
+
       return;
     }
 
@@ -57,13 +59,13 @@ class Queue {
 
     this.size--;
 
-    // JSON.stringify(localStorage.setItem("Data", this.data));
+    localStorage.setItem("Data", JSON.stringify(this.data));
   }
 
   get getData() {
-    // let newData = JSON.parse(localStorage.getItem("Data"));
-    // return newData? Object.values(newData) : [];
-    return Object.values(this.data);
+    let newData = JSON.parse(localStorage.getItem("Data"));
+    return newData? Object.values(newData) : [];
+    // return Object.values(this.data);
   }
 
   get getSize() {
