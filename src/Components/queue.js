@@ -11,11 +11,10 @@ class Queue {
   //This is a queue data structure which follows the rules of FIRST IN, FIRST OUT.
   constructor() {
     let data = JSON.parse(localStorage.getItem("Data"));
-    this.data = data ? data : {};
-    // this.data = {};
-    this.rear = 0;
-    this.front = 0;
-    this.size = 0;
+    this.data = data || {};
+    this.rear = Object.values(this.data).length + 1;
+    this.front = 1;
+    this.size = Object.values(this.data).length;
   }
 
   enqueue(title, description, color) {
@@ -34,38 +33,23 @@ class Queue {
 
   dequeue(id) {
     //remove tasks from the queue.
-    let resetFront = this.front;
 
     if (this.size === 0) return null;
-
-    if (this.front !== id) {
-      //Break the rule of the FIRST IN, FIRST OUT, if the user intends to delete a task that is not at the front.
-      this.front = id;
-
-      delete this.data[this.front];
-
-      this.front = resetFront;
-
-      this.size--;
-
-      localStorage.setItem("Data", JSON.stringify(this.data));
-
-      return;
-    }
+      
+    //Break the rule of the FIRST IN, FIRST OUT, if the user intends to delete a task that is not at the front.
+    this.front = id;
 
     delete this.data[this.front];
-
-    this.front++;
 
     this.size--;
 
     localStorage.setItem("Data", JSON.stringify(this.data));
+    
   }
 
   get getData() {
     let newData = JSON.parse(localStorage.getItem("Data"));
     return newData? Object.values(newData) : [];
-    // return Object.values(this.data);
   }
 
   get getSize() {
@@ -74,7 +58,6 @@ class Queue {
 }
 
 const queue = new Queue();
-
 
 
 module.exports = queue;

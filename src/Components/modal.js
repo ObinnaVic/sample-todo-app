@@ -7,6 +7,7 @@ function Modal({modal, setModal}) {
 
 
     const AddTask = () => {
+      console.log("added");
       Queue.enqueue(task.title, task.desc, "white");
       setTask({title: "", desc: ""});
       setModal(false);
