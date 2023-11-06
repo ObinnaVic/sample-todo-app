@@ -1,9 +1,10 @@
 class Node {
-  constructor(title, description, id, color) {
+  constructor(title, description, id, color, time) {
     this.title = title;
     this.description = description;
     this.id = id;
     this.color = color;
+    this.time = time;
   }
 }
 

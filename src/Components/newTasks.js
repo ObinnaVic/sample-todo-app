@@ -1,41 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 const Queue = require("./queue");
-
-// console.log(Queue.getData);
 
 function NewTasks() {
   const [newTasks, setNewTask] = useState([]);
+  const [remainingTime, setRemainingTime] = useState(120); // 2 minutes in seconds
   // const [doneTask, setDoneTask] = useState(false);
-  
+
   const addTask = () => {
     const data = Queue.getData;
     setNewTask(data);
-  }
-  
-  // useEffect(() => {
-  //   const data = Queue.getData;
-  //   setNewTask(data);
-  // },[])
+  };
 
   setInterval(() => {
     addTask();
   }, 2000);
-
-  // console.log(newTasks);
-
-  // let arr = [];
-  // let Data = Object.values(localStorage);
-
-  // for (const i of Data) {
-  //   arr.push(JSON.parse(i));
-  // }
-
-  // const getData = () => {
-  //   setNewTask(arr);
-  // };
-  // useEffect(() => {
-  //   getData();
-  // }, [arr.length]);
 
   const deleteTask = (id) => {
     Queue.dequeue(id);
@@ -62,6 +40,41 @@ function NewTasks() {
   //   getData();
   // }
 
+  // const timerInterval = setInterval(() => {
+  //   setRemainingTime((prevTime) => {
+  //     if (prevTime <= 0) {
+  //       clearInterval(timerInterval);
+  //       return 0;
+  //     }
+  //     return prevTime - 1;
+  //   });
+  // }, 1000);
+  // useEffect(() => {
+  //   const timerInterval = setInterval(() => {
+  //     setRemainingTime((prevTime) => {
+  //       if (prevTime <= 0) {
+  //         clearInterval(timerInterval);
+  //         return 0;
+  //       }
+  //       return prevTime - 1;
+  //     });
+  //   }, 1000);
+
+  //   return () => {
+  //     clearInterval(timerInterval);
+  //   };
+  // }, []);
+
+  // const formatTime = (time) => {
+  //   const hours = Math.floor(time / 3600);
+  //   const minutes = Math.floor((time % 3600) / 60);
+  //   const seconds = time % 60;
+
+  //   return `${hours.toString().padStart(2, "0")}:${minutes
+  //     .toString()
+  //     .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+  // };
+
   if (newTasks?.length === 0) {
     return (
       <section>
@@ -77,6 +90,12 @@ function NewTasks() {
   }
   return (
     <section>
+      {/* <div
+        className='circle'
+        style={{ animation: `rotate ${remainingTime} linear infinite` }}
+      >
+        <div className='timer'>{formatTime(remainingTime)}</div>
+      </div> */}
       <h2>Today's Tasks</h2>
       <div className='newTasks'>
         {newTasks?.map((item) => {
