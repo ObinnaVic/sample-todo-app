@@ -4,7 +4,7 @@ class Node {
     this.description = description;
     this.id = id;
     this.color = color;
-    // this.time = time;
+    this.time = 3600;
   }
 }
 
@@ -28,6 +28,7 @@ class Queue {
     this.rear++;
 
     this.size++;
+
 
     localStorage.setItem("Data", JSON.stringify(this.data));
   }
@@ -56,9 +57,28 @@ class Queue {
   get getSize() {
     return this.size;
   }
+
+  reduceTime() {
+    for (let i = 1; i < this.size; i++) {
+      let data = JSON.parse(localStorage.getItem("Data"));
+      console.log(data);
+      let node = this.data[i];
+      node.time--
+    }
+  }
 }
 
 const queue = new Queue();
+
+// queue.enqueue("Victor", "Vic", 2, "red");
+// queue.enqueue("Nkire", "Nkire", 3, "red");
+queue.reduceTime();
+// console.log(queue.reduceTime());
+// console.log(queue.reduceTime());
+// console.log(queue.reduceTime());
+// console.log(queue.reduceTime());
+// console.log(queue.reduceTime());
+
 
 
 module.exports = queue;
