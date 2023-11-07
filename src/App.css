@@ -10,10 +10,17 @@ body {
 
 
 .main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.task-section {
   /* position: relative; */
   /* color: white; */
-  height: auto;
   width: 40%;
+  height: auto;
   margin: 0 auto;
   padding: 20px;
 }
@@ -54,7 +61,7 @@ body {
   color: black;
 }
 
-footer {
+.footer {
   position: fixed;
   bottom: 0;
   background-color: white;
@@ -110,10 +117,12 @@ footer svg {
 }
 
 .addBtn {
+  display: flex;
   background-color: rgb(245, 152, 39);
   color: white;
   padding: 5px 20px;
   cursor: pointer;
+  margin: 10px auto;
 }
 
 .showModal {
@@ -151,14 +160,34 @@ footer svg {
   cursor: pointer;
 }
 
+.timesetter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timesetter button {
+  /* height: 20px; */
+  padding: 2px 10px;
+  margin: 2px;
+}
+
+.timesetter input {
+  width: 60px;
+  border: none;
+  outline: none;
+  border-radius: 0;
+  margin: 0;
+}
+
 
 
 @media only screen and (max-width: 700px) {
-  .main {
+  .task-section {
     width: 100%;
   }
 
-  footer {
+  .footer {
     width: 100%;
   }
 
@@ -174,15 +203,11 @@ footer svg {
   width: 30px;
   height: 30px;
   background-color: white;
-  border: 5px solid white;
+  /* border: 5px solid white; */
   border-radius: 50%;
   position: relative;
   /* animation: rotate 50s linear infinite; */
   transform-origin: center;
-}
-
-.timer {
-  text-align: center;
 }
 
 /* .time {
@@ -204,13 +229,13 @@ footer svg {
 @keyframes rotate {
   100% {
     transform: rotate(360deg);
-    border-color: red;
+    background-color: red;
   }
 }
 
 @keyframes expand {
   100% {
     transform: translate(-50%, -50%) scaleX(1);
-    background-color: red;
+    background-color: white;
   }
 }
