@@ -66,17 +66,22 @@ class Queue {
 
   reduceTime() {
     let currentData = JSON.parse(localStorage.getItem("Data"));
-    if (currentData === undefined) {
+    if (currentData === undefined || this.size === 0) {
       return;
     }
+
     for (let i = 1; i <= this.size; i++) {
+      if (currentData[i].time === undefined) {
+        continue;
+      }
       if (currentData[i].time === 0) {
         this.dequeue(i);
       } else {
-        currentData[i].time--;
+        currentData[i].time = currentData[i].time - 1;
       }
     }
     localStorage.setItem("Data", JSON.stringify(currentData));
+    return;
   }
 
 
