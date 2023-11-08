@@ -11,7 +11,13 @@ class Node {
 class Queue {
   //This is a queue data structure which follows the rules of FIRST IN, FIRST OUT.
   constructor() {
-    let data = JSON.parse(localStorage.getItem("Data"));
+    let fetchData = localStorage.getItem("Data");
+    let data;
+    if (fetchData === undefined) {
+      localStorage.setItem("Data", JSON.stringify({}));
+    } else {
+      data = JSON.parse(fetchData);
+    }
     this.data = data || {};
     this.rear = Object.values(this.data).length + 1;
     this.front = 1;
@@ -50,8 +56,8 @@ class Queue {
   }
 
   get getData() {
-    let newData = JSON.parse(localStorage.getItem("Data"));
-    return newData? Object.values(newData) : [];
+    // let newData = JSON.parse(localStorage.getItem("Data"));
+    return this.data? Object.values(this.data) : [];
   }
 
   get getSize() {
@@ -59,20 +65,28 @@ class Queue {
   }
 
   reduceTime() {
-    for (let i = 1; i < this.size; i++) {
-      let data = JSON.parse(localStorage.getItem("Data"));
-      console.log(data);
-      let node = this.data[i];
-      node.time--
+    let currentData = JSON.parse(localStorage.getItem("Data"));
+    if (currentData === undefined) {
+      return;
     }
+    for (let i = 1; i <= this.size; i++) {
+      if (currentData[i].time === 0) {
+        this.dequeue(i);
+      } else {
+        currentData[i].time--;
+      }
+    }
+    localStorage.setItem("Data", JSON.stringify(currentData));
   }
+
+
 }
 
 const queue = new Queue();
 
 // queue.enqueue("Victor", "Vic", 2, "red");
 // queue.enqueue("Nkire", "Nkire", 3, "red");
-queue.reduceTime();
+// console.log(queue.reduceTime());
 // console.log(queue.reduceTime());
 // console.log(queue.reduceTime());
 // console.log(queue.reduceTime());

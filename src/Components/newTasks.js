@@ -3,7 +3,7 @@ const Queue = require("./queue");
 
 function NewTasks() {
   const [newTasks, setNewTask] = useState([]);
-  const [remainingTime, setRemainingTime] = useState(3600); // 2 minutes in seconds
+  // const [remainingTime, setRemainingTime] = useState(3600); // 2 minutes in seconds
   // const [doneTask, setDoneTask] = useState(false);
 
   const time = 3600;
@@ -16,8 +16,9 @@ function NewTasks() {
   };
 
   setInterval(() => {
+    // Queue.reduceTime();
     addTask();
-  }, 2000);
+  }, 1000);
 
   const deleteTask = (id) => {
     Queue.dequeue(id);
@@ -117,18 +118,21 @@ function NewTasks() {
                     <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
                   </svg>
                 )}
-                <div
-                  className="circle"
-                  style={{
-                    animation: `rotate ${time}s linear infinite`,
-                  }}
-                >
+                <div>
                   <div
-                    className="line"
+                    className="circle"
                     style={{
-                      animation: `expand ${time}s linear infinite`,
+                      animation: `rotate ${time}s linear infinite`,
                     }}
-                  ></div>
+                  >
+                    <div
+                      className="line"
+                      style={{
+                        animation: `expand ${time}s linear infinite`,
+                      }}
+                    ></div>
+                  </div>
+                  {/* {Queue[id].time} */}
                 </div>
               </div>
             </div>
